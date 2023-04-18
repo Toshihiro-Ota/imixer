@@ -3,9 +3,9 @@
 This is the official PyTorch implementation of iMixer created by
 
 - [Toshihiro Ota](https://github.com/Toshihiro-Ota)
-  - [![AnyTech](https://img.shields.io/badge/CyberAgent-Inc.-2c8c3c?style=plastic&labelColor=84bc2c)](https://www.cyberagent.co.jp/en/)
+  [![CA](https://img.shields.io/badge/CyberAgent-Inc.-2c8c3c?style=plastic&labelColor=84bc2c)](https://www.cyberagent.co.jp/en/)
 - [Masato Taki](https://scholar.google.com/citations?hl=en&user=3nMhvfgAAAAJ)
-  - [![Rikkyo](https://img.shields.io/badge/Rikkyo-University-FFFFFF?style=plastic&labelColor=582780)](https://english.rikkyo.ac.jp)
+  [![Rikkyo](https://img.shields.io/badge/Rikkyo-University-FFFFFF?style=plastic&labelColor=582780)](https://english.rikkyo.ac.jp)
 
 The paper is available at [arXiv:2304.xxxxx](https://arxiv.org/abs/2304.xxxxx).
 
@@ -15,13 +15,13 @@ In the past years, Transformers have achieved great success not only in natural 
 
 ## Network Architecture
 
-The overall architecture of iMixer as a form of MetaFormers:
+The schematic diagram of iMixer architecture as a form of MetaFormers is depicted as follows:
 
 <p align="center">
   <img src="./img/metaformers.jpg" width='60%'>
 </p>
 
-iMLP module involved in iMixer as its token mixer:
+Basic structure of the proposed iMLP module involved in iMixer as its token mixer:
 
 <p align="center">
   <img src="./img/imlp.jpg" width='30%'>
@@ -29,27 +29,33 @@ iMLP module involved in iMixer as its token mixer:
 
 ## Model Configuration
 
-| name | arch | Params | acc@1 (%) |
-| --- | --- | --- | --- |
-| iMixer-S | ```imixer_s16_224``` | 19M | 82.3 |
-| iMixer-M | ```imixer_b16_224``` | xxM | 82.8 |
-| iMixer-L | ```imixer_l16_224``` | xxM | 83.4 |
+iMixer models trained on CIFAR-10 from scratch:
+
+| Model    | Name                 | Parameters | Top-1 Acc. (%) |
+| ---      | ---                  | :---:      | :---:          |
+| iMixer-S | `imixer_s16_224`     | 19M        | 88.54          |
+| iMixer-B | `imixer_b16_224`     | 66M        | 89.21          |
+| iMixer-L | `imixer_l16_224`     | 232M       | 87.68          |
 
 ## Usage
 
 ### Requirements
 
-- torch>=1.12.1
-- torchvision
-- timm==0.6.11
-- matplotlib
-- pillow
-- scipy
-- etc., see [requirements.txt](requirements.txt)
+```python
+torch>=1.12.1
+torchvision>=0.13.1
+timm==0.6.11
+matplotlib
+pillow
+scipy
+...
+```
 
-### Traning
+etc. See [requirements.txt](requirements.txt).
 
-Command line for training iMixer models on CIFAR-10 from scratch.
+### Training
+
+Run the following in your command line for training iMixer models on CIFAR-10 from scratch on 4 GPUs.
 
 ```python
 ./distributed_train.sh 4 /path/to/cifar10 \
@@ -64,7 +70,7 @@ Command line for training iMixer models on CIFAR-10 from scratch.
   --amp \
   --img-size 224 \
   --drop-path 0.1 \
-  --lr 2e-3 \
+  --lr 5e-4 \
   --weight-decay 0.05 \
   --remode pixel \
   --reprob 0.25 \
@@ -79,11 +85,11 @@ Command line for training iMixer models on CIFAR-10 from scratch.
   --n_iter 1
 ```
 
-## Reference
+## Citation
 
-You may want to cite:
+If you use our code please cite:
 
-```
+```tex
 @article{ota2023imixer,
   title={iMixer: hierarchical Hopfield network implies an invertible, implicit and iterative MLP-Mixer},
   author={Ota, Toshihiro and Taki, Masato},
@@ -93,7 +99,7 @@ You may want to cite:
 
 ## Acknowledgment
 
-Our implementation is based on [PyTorch Image Models](https://github.com/huggingface/pytorch-image-models) by Ross Wightman. We greatly appreciate his brilliant work.
+Our implementation is based on [pytorch-image-models](https://github.com/huggingface/pytorch-image-models) and [invertible-resnet](https://github.com/jhjacobsen/invertible-resnet). We greatly appreciate their excellent works.
 
 |   |   |
 |:--|:-:|

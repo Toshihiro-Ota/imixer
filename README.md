@@ -18,17 +18,19 @@ In the past years, Transformers have achieved great success not only in natural 
 The overall architecture of iMixer as a form of MetaFormers:
 
 <p align="center">
-  @import "./img/metaformers.jpg" {width='60%' title='metaformers'}
+  <img src="./img/metaformers.jpg" width='60%'>
+</p>
 
 iMLP module involved in iMixer as its token mixer:
 
 <p align="center">
-  @import "./img/imlp.jpg" {width='30%' title='imlp'}
+  <img src="./img/imlp.jpg" width='30%'>
+</p>
 
 ## Model Configuration
 
 | name | arch | Params | acc@1 (%) |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | iMixer-S | ```imixer_s16_224``` | 19M | 82.3 |
 | iMixer-M | ```imixer_b16_224``` | xxM | 82.8 |
 | iMixer-L | ```imixer_l16_224``` | xxM | 83.4 |
@@ -47,10 +49,34 @@ iMLP module involved in iMixer as its token mixer:
 
 ### Traning
 
-Command line for training Sequencer models on ImageNet from scratch.
+Command line for training iMixer models on CIFAR-10 from scratch.
 
-```
-./distributed_train.sh 4 /path/to/cifar10 --dataset torch/cifar10 --num-classes 10 --model imixer_s16_224 --batch-size 512 --workers 4 --opt adamw --epochs 300 --sched cosine --amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05 --remode pixel --reprob 0.25 --aa rand-m9-mstd0.5-inc1 --smoothing 0.1 --mixup 0.8 --cutmix 1.0 --warmup-lr 1e-6 --warmup-epochs 20 --h_ratio 2 --n_power 8 --n_iter 1
+```python
+./distributed_train.sh 4 /path/to/cifar10 \
+  --dataset torch/cifar10 \
+  --num-classes 10 \
+  --model imixer_s16_224 \
+  --batch-size 512 \
+  --workers 4 \
+  --opt adamw \
+  --epochs 300 \
+  --sched cosine \
+  --amp \
+  --img-size 224 \
+  --drop-path 0.1 \
+  --lr 2e-3 \
+  --weight-decay 0.05 \
+  --remode pixel \
+  --reprob 0.25 \
+  --aa rand-m9-mstd0.5-inc1 \
+  --smoothing 0.1 \
+  --mixup 0.8 \
+  --cutmix 1.0 \
+  --warmup-lr 1e-6 \
+  --warmup-epochs 20 \
+  --h_ratio 2 \
+  --n_power 8 \
+  --n_iter 1
 ```
 
 ## Reference

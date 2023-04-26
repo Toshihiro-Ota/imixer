@@ -2,30 +2,30 @@
 
 This is the official PyTorch implementation of iMixer created by
 
-- [Toshihiro Ota](https://github.com/Toshihiro-Ota)
-  [![CA](https://img.shields.io/badge/CyberAgent-Inc.-2c8c3c?style=plastic&labelColor=84bc2c)](https://www.cyberagent.co.jp/en/)
-- [Masato Taki](https://scholar.google.com/citations?hl=en&user=3nMhvfgAAAAJ)
-  [![Rikkyo](https://img.shields.io/badge/Rikkyo-University-FFFFFF?style=plastic&labelColor=582780)](https://english.rikkyo.ac.jp)
+- [Toshihiro Ota](https://github.com/Toshihiro-Ota)<br> [![CA](https://img.shields.io/badge/CyberAgent-Inc.-2c8c3c?style=plastic&labelColor=84bc2c)](https://www.cyberagent.co.jp/en/)
+- [Masato Taki](https://scholar.google.com/citations?hl=en&user=3nMhvfgAAAAJ)<br> [![Rikkyo](https://img.shields.io/badge/Rikkyo-University-FFFFFF?style=plastic&labelColor=582780)](https://english.rikkyo.ac.jp)
 
 The paper is available at [arXiv:2304.xxxxx](https://arxiv.org/abs/2304.xxxxx).
 
 ## Abstract
 
-In the past years, Transformers have achieved great success not only in natural language processing but also in the field of computer vision. MLP-Mixer, which has spatial MLP token-mixing modules corresponding to the attention modules in Transformers, shows the competitive performance despite of the much less inductive bias inside the architecture. Recent studies on modern Hopfield networks suggest the correspondence between certain energy-based associative memory models and Transformers or MLP-Mixer, and shed some light on the theoretical background of the performance of Transformer-type architectures, whereas they are mostly based on either empirical or theoretical aspects. Inspired by the newly introduced hierarchical Hopfield network, in this paper we propose *iMixer*, a novel MLP-Mixer model which has an invertible, implicit, and iterative mixing module. In addition to the theoretical derivation of the model, we provide a practical algorithm for the inverted mixing module. We evaluate the model performance with various datasets on image classification tasks, and find that iMixer reasonably achieves the improvement compared to the baseline vanilla MLP-Mixer. The results show the effectiveness of our Hopfield-based approach and imply that the correspondence between the Hopfield networks and the Mixer models really works. As a byproduct, we also clarify that the proposed module can be regarded as an instance of the so-called implicit layer or the deep equilibrium model.
+In the last few years, the success of Transformers in computer vision has stimulated the discovery of many alternative models that compete with Transformers, such as the MLP-Mixer. Despite their weak induced bias, these models have achieved performance comparable to well-studied convolutional neural networks. Recent studies on modern Hopfield networks suggest the correspondence between certain energy-based associative memory models and Transformers or MLP-Mixer, and shed some light on the theoretical background of the Transformer-type architectures design. In this paper we generalize the correspondence to the recently introduced hierarchical Hopfield network, and find *iMixer*, a novel generalization of MLP-Mixer model. Unlike ordinary feedforward neural networks, iMixer involves MLP layers that propagate forward from the output side to the input side. We characterize the module as an example of invertible, implicit, and iterative mixing module. We evaluate the model performance with various datasets on image classification tasks, and find that iMixer reasonably achieves the improvement compared to the baseline vanilla MLP-Mixer. The results imply that the correspondence between the Hopfield networks and the Mixer models serves as a principle for understanding a broader class of Transformer-like architecture designs.
 
 ## Network Architecture
 
-The schematic diagram of iMixer architecture as a form of MetaFormers is depicted as follows:
+The schematic diagram of the iMixer architecture as a form of MetaFormers is depicted as follows:
 
 <p align="center">
   <img src="./img/metaformers.jpg" width='60%'>
 </p>
 
-Basic structure of the proposed iMLP module involved in iMixer as its token mixer:
+Basic structure of the proposed iMLP module involved in iMixer as its token mixer is shown below. The invertible ResNet (i-Res) module represents the backward-forward operation in the iMLP module as an infinitely iterated MLP blocks:
 
 <p align="center">
-  <img src="./img/imlp.jpg" width='30%'>
+  <img src="./img/imlps.jpg" width='70%'>
 </p>
+
+For more details on the iMixer architecture and its derivation, see Sec. 4 of [the paper](https://arxiv.org/abs/2304.xxxxx).
 
 ## Model Configuration
 
@@ -87,13 +87,13 @@ Run the following in your command line for training iMixer models on CIFAR-10 fr
 
 ## Citation
 
-If you use our code please cite:
+If you find our code useful, please cite:
 
 ```tex
 @article{ota2023imixer,
-  title={iMixer: hierarchical Hopfield network implies an invertible, implicit and iterative MLP-Mixer},
-  author={Ota, Toshihiro and Taki, Masato},
-  year={2023}
+  title  = {iMixer: hierarchical Hopfield network implies an invertible, implicit and iterative MLP-Mixer},
+  author = {Ota, Toshihiro and Taki, Masato},
+  year   = {2023}
 }
 ```
 
@@ -105,4 +105,8 @@ Our implementation is based on [pytorch-image-models](https://github.com/hugging
 |:--|:-:|
 |  We thank [Graduate School of Artificial Intelligence and Science, Rikkyo University (Rikkyo AI)](https://ai.rikkyo.ac.jp) which supports us with computational resources, facilities, and others. |  ![logo-rikkyo-ai] |
 
-[logo-rikkyo-ai]: img/RIKKYOAI_main.png "Logo of Rikkyo AI"
+[logo-rikkyo-ai]: img/RIKKYOAI.png "Logo of Rikkyo AI"
+
+## License
+
+This project is licensed under the Apache License, Version 2.0 (the "License"). See [LICENSE](./LICENSE) for details.

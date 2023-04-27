@@ -5,7 +5,7 @@ This is the official PyTorch implementation of iMixer created by
 - [Toshihiro Ota](https://github.com/Toshihiro-Ota)<br> [![CA](https://img.shields.io/badge/CyberAgent-Inc.-2c8c3c?style=plastic&labelColor=84bc2c)](https://www.cyberagent.co.jp/en/)
 - [Masato Taki](https://scholar.google.com/citations?hl=en&user=3nMhvfgAAAAJ)<br> [![Rikkyo](https://img.shields.io/badge/Rikkyo-University-FFFFFF?style=plastic&labelColor=582780)](https://english.rikkyo.ac.jp)
 
-The paper is available at [arXiv:2304.xxxxx](https://arxiv.org/abs/2304.xxxxx).
+The paper is available at [arXiv:2304.13061](https://arxiv.org/abs/2304.13061).
 
 ## Abstract
 
@@ -25,7 +25,7 @@ Basic structure of the proposed iMLP module involved in iMixer as its token mixe
   <img src="./img/imlps.jpg" width='70%'>
 </p>
 
-For more details on the iMixer architecture and its derivation, see Sec. 4 of [the paper](https://arxiv.org/abs/2304.xxxxx).
+For more details on the iMixer architecture and its derivation, see Sec. 4 of [the paper](https://arxiv.org/abs/2304.13061).
 
 ## Model Configuration
 
@@ -87,13 +87,14 @@ Run the following in your command line for training iMixer models on CIFAR-10 fr
 
 ## Citation
 
-If you find our code useful, please cite:
+If you find our code useful, please cite the accompanying paper:
 
 ```tex
 @article{ota2023imixer,
-  title  = {iMixer: hierarchical Hopfield network implies an invertible, implicit and iterative MLP-Mixer},
-  author = {Ota, Toshihiro and Taki, Masato},
-  year   = {2023}
+  title   = {iMixer: hierarchical Hopfield network implies an invertible, implicit and iterative MLP-Mixer},
+  author  = {Ota, Toshihiro and Taki, Masato},
+  journal = {arXiv preprint arXiv:2304.13061},
+  year    = {2023}
 }
 ```
 

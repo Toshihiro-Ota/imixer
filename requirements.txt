@@ -1,11 +1,9 @@
 attrs==21.4.0
-certifi==2022.9.24
 click==7.1.2
 dnspython==2.2.1
 docker-pycreds==0.4.0
 future==0.16.0
 gitdb==4.0.9
-gitpython==3.1.29
 importlib-metadata==4.13.0
 importlib-resources==5.10.0
 jsonschema==4.3.3
@@ -13,7 +11,6 @@ kiwisolver==1.4.4
 matplotlib==3.2.2
 pathlib==1.0.1
 pathtools==0.1.2
-pillow==7.1.2
 promise==2.3
 protobuf==3.17.3
 pyparsing==3.0.9
